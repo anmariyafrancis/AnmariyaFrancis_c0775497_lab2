@@ -13,14 +13,18 @@
 		function createTable(rows,columns){
 			var tb=document.createElement('tb');
 			tb.id="newTable";
-			for(i=0;i<rows;i++){
+			for(i=0;i<rows;i++)
+			{
 				var tr=document.createElement('tr');
-				for(j=0;j<columns;j++){
+				for(j=0;j<columns;j++)
+				{
 					var td=document.createElement('td');
 					td.innerHTML='row'+'['+i+']'+'col'+'['+j+']';
 					tr.appendChild(td);
 				}
+				tb.appendChild(tr);
 			}
+			document.body.appendChild(tb);
 		}
 	</script>
 	
