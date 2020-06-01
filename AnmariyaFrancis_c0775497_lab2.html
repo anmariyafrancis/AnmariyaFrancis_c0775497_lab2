@@ -36,6 +36,16 @@
 				addCellText(row.insertCell(i),"row");
 			}
 		}
+
+		function addColumn()
+		{
+			var table=document.getElementById("newTable"),q;
+			for(q=0;q<table.rows.length;q++)
+			{
+				addCellText(table.rows[q].insertCell(table.rows[q].cells.length),"col");
+			}
+
+		}
 	</script>
 	
 </html>
