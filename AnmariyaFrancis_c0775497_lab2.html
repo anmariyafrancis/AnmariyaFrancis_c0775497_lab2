@@ -3,7 +3,7 @@
 	Number of rows: <input type="text" id="t1" /><br><br>
 	Number of cols: <input type="text" id="t2" /><br><br>
 	
-	<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+	<button id="b1" onclick="clear()">Generate Table</button><br><br>
 	
 	<button id="b2" onclick="addColumn()">Add Column</button>
 	
@@ -13,10 +13,10 @@
 		function createTable(rows,columns){
 			var tb=document.createElement('tb');
 			tb.id="newTable";
-			for(i=0;i<rows;i++)
+			for(var i=0;i<rows;i++)
 			{
 				var tr=document.createElement('tr');
-				for(j=0;j<columns;j++)
+				for(var j=0;j<columns;j++)
 				{
 					var td=document.createElement('td');
 					td.innerHTML='row'+'['+i+']'+'col'+'['+j+']';
@@ -27,14 +27,36 @@
 			document.body.appendChild(tb);
 		}
 
+		function clear()
+		{
+			document.getElementById("title").style.display="none";
+			document.getElementById('t1').value=''
+			document.getElementById('t2').value=''
+			document.getElementById("b1").style.display="none";
+		}
+
+		var button=document.getElementById('b1').addEventListener('click',function()
+		{
+			var rows=document.getElementById('t1').value;
+			var columns=document.getElementById('t2').value;
+			createTable(rows,columns);
+			clear();
+		})
+
 		function addRow()
 		{
-			var table=document.getElementById("newTable");
+			var table=document.getElementById("newTable"),
 			row=table.insertRow(table.rows.length),p;
 			for(p=0;p<table.rows[0].cells.length;p++)
 			{
-				addCellText(row.insertCell(i),"row");
+				addCellText(row.insertCell(p),"row");
 			}
+		}
+
+		function addCellText(cell,text)
+		{
+			t=document.createTextNode(text);
+			cell.appendChild(t);
 		}
 
 		function addColumn()
@@ -46,26 +68,7 @@
 			}
 		}
 
-		function addCellText(cell,text)
-		{
-			t=document.createTextNode(text);
-			cell.appendChild(t);
-		}
-
-		var button=document.getElementById('b1').addEventListener('click',function()
-		{
-			var rows=document.getElementById('t1').value;
-			var columns=document.getElementById('t2').value;
-			createTable(rows,columns);
-			clear();
-		})
-
-		function clear()
-		{
-			document.getElementById("title").style.display="none";
-			document.getElementById('t1').value=''
-			document.getElementById('t2').value=''
-			document.getElementById("b1").style.display="none";
-		}
+		
+	
 	</script>	
 </html>
