@@ -44,8 +44,28 @@
 			{
 				addCellText(table.rows[q].insertCell(table.rows[q].cells.length),"col");
 			}
-
 		}
-	</script>
-	
+
+		function addCellText(cell,text)
+		{
+			t=document.createTextNode(text);
+			cell.appendChild(t);
+		}
+
+		var button=document.getElementById('b1').addEventListener('click',function()
+		{
+			var rows=document.getElementById('t1').value;
+			var columns=document.getElementById('t2').value;
+			createTable(rows,columns);
+			clear();
+		})
+
+		function clear()
+		{
+			document.getElementById("title").style.display="none";
+			document.getElementById('t1').value=''
+			document.getElementById('t2').value=''
+			document.getElementById("b1").style.display="none";
+		}
+	</script>	
 </html>
