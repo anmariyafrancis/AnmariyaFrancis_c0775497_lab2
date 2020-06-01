@@ -1,7 +1,7 @@
 <html>
-	<font size="8" color="green">Final test lab</font><br><br>
-	Number of rows: <input type="text" id="t1" /><br><br>
-	Number of cols: <input type="text" id="t2" /><br><br>
+	<font id="tt" size="8" color="green">Final test lab</font><br><br>
+	<p id="p1">Number of rows: <input type="text" id="t1" /></p>
+	<p id="p2">umber of cols: <input type="text" id="t2" /></p>
 	
 	<button id="b1" onclick="clear()">Generate Table</button><br><br>
 	
@@ -10,65 +10,63 @@
 	<button id="b3" onclick="addRow()">Add Row</button>
 		
 	<script language="javascript">
-		function createTable(rows,columns){
-			var tb=document.createElement('tb');
-			tb.id="newTable";
-			for(var i=0;i<rows;i++)
+		function createTable(rows, columns) 
+		{
+            var table = document.createElement('table');
+            table.style.border = "1px solid black";
+            table.id = "newTable";
+            for (var x = 0; x < rows; x++) 
 			{
-				var tr=document.createElement('tr');
-				for(var j=0;j<columns;j++)
+                var tr = document.createElement('tr');
+
+                for (var y = 0; y < columns; y++) 
 				{
-					var td=document.createElement('td');
-					td.innerHTML='row'+'['+i+']'+'col'+'['+j+']';
-					tr.appendChild(td);
-				}
-				tb.appendChild(tr);
-			}
-			document.body.appendChild(tb);
-		}
+                    var td = document.createElement('td');
+                    td.innerHTML = 'row' + '[' + x + ']' + 'col' + '[' + y + ']';
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            document.body.appendChild(table);
+        }
 
-		function clear()
+		function addRow() 
 		{
-			document.getElementById("title").style.display="none";
-			document.getElementById('t1').value=''
-			document.getElementById('t2').value=''
-			document.getElementById("b1").style.display="none";
-		}
-
-		var button=document.getElementById('b1').addEventListener('click',function()
-		{
-			var rows=document.getElementById('t1').value;
-			var columns=document.getElementById('t2').value;
-			createTable(rows,columns);
-			clear();
-		})
-
-		function addRow()
-		{
-			var table=document.getElementById("newTable"),
-			row=table.insertRow(table.rows.length),p;
-			for(p=0;p<table.rows[0].cells.length;p++)
+    		var tb = document.getElementById("newTable"), 
+        	row = tb.insertRow(tb.rows.length),i;
+    		for (i = 0; i < tb.rows[0].cells.length; i++) 
 			{
-				addCellText(row.insertCell(p),"row");
+        		addCellText(row.insertCell(i), "row");
 			}
 		}
 
-		function addCellText(cell,text)
+		function addColumn() 
 		{
-			t=document.createTextNode(text);
-			cell.appendChild(t);
-		}
-
-		function addColumn()
-		{
-			var table=document.getElementById("newTable"),q;
-			for(q=0;q<table.rows.length;q++)
-			{
-				addCellText(table.rows[q].insertCell(table.rows[q].cells.length),"col");
+			var tb = document.getElementById("newTable"),i;
+			for (i = 0; i < tb.rows.length; i++) {
+				addCellText(tb.rows[i].insertCell(tb.rows[i].cells.length), "col");
 			}
+		}	
+
+		function addCellText(cell, text) 
+		{
+			txt = document.createTextNode(text); 
+			cell.appendChild(txt);                                       
 		}
 
-		
-	
+		var button = document.getElementById('b1').addEventListener('click', function () {
+            var rows = document.getElementById('t1').value;
+            var columns = document.getElementById('t2').value;
+            createTable(rows, columns);
+            clear();
+        })
+
+		function clear() {
+			document.getElementById("tt").style.display = "none";
+            document.getElementById('p1').style.display = "none"
+            document.getElementById('p2').style.display = "none"
+            document.getElementById("b1").style.display = "none";
+			
+        }
 	</script>	
 </html>
