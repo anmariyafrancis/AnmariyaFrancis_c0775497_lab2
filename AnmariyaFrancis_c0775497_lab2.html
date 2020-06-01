@@ -30,6 +30,11 @@
 		function addRow()
 		{
 			var table=document.getElementById("newTable");
+			row=table.insertRow(table.rows.length),p;
+			for(p=0;p<table.rows[0].cells.length;p++)
+			{
+				addCellText(row.insertCell(i),"row");
+			}
 		}
 	</script>
 	
